@@ -2,7 +2,7 @@ const path = require(`path`)
 
 module.exports = {
   // Target must be serverless
-  target: `serverless`,
+  //target: `serverless`,
   // sass stuff
   sassOptions: {
     includePaths: [path.join(__dirname, `scss`)],

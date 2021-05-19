@@ -6,7 +6,7 @@ import * as Showdown from 'showdown'
 import { getCurrentUser } from '../util/storage'
 import path from 'path'
 import Toast from 'react-bootstrap/Toast'
-import Layout from './layout'
+import Layout from './Layout'
 
 const CreatePost = () => {
   const dateTile = dayjs().format(`ddd, MMM D, YYYY h:mm A`)
