@@ -42,20 +42,22 @@ export default function LoginPage() {
           <div className="form-group">
             <label className={`label d-block`}>
               URL
-              <input className={`form-control`} type="text" name="siteName" value={siteNameState} onChange={event => setSiteNameState(event.target.value)} />
+              <input className={`form-control`} type="text" name="siteName" value={siteNameState} onChange={(event) => setSiteNameState(event.target.value)} />
             </label>
           </div>
           <div className="form-group">
             <label className={`label d-block`}>
               API Key
-              <textarea className={`form-control`} type="text" name="siteAPI" value={siteAPIState} onChange={event => setSiteAPIState(event.target.value)} />
+              <textarea className={`form-control`} type="text" name="siteAPI" value={siteAPIState} onChange={(event) => setSiteAPIState(event.target.value)} />
             </label>
           </div>
           <input className={`btn btn-block btn-primary`} type="submit" value="Log In" />
         </form>
 
         <p className="pt-2">
-          <Link href="/about/"><a>What is this?</a></Link>
+          <Link href="/about/">
+            <a>What is this?</a>
+          </Link>
         </p>
       </Layout>
     </>

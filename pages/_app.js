@@ -7,8 +7,3 @@ function WhisperApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 export default WhisperApp
-
-WhisperApp.propTypes = {
-  Component: PropTypes.node.isRequired,
-  pageProps: PropTypes.node.isRequired,
-}

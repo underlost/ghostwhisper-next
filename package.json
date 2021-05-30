@@ -8,7 +8,7 @@
     "start": "next start",
     "bootstrap": "cp -r node_modules/bootstrap/scss/ scss/bootstrap/",
     "clean": "rm -rf .cache && rm -rf ./public",
-    "format": "prettier --write src/**/*.{js,jsx}",
+    "format": "prettier --write components/**/*.{js,jsx} pages/**/*.{js,jsx}",
     "lint": "eslint . --ext .js --cache",
     "fix": "eslint . --ext .js --cache --fix"
   },

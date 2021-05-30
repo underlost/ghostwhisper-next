@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Head from 'next/head'
 import Layout from '../components/Layout'
 import LoginWrapper from '../components/LoginWrapper'
 import { getCurrentUser, updateUser } from '../util/storage'
@@ -20,6 +21,9 @@ const SettingsPage = () => {
 
   return (
     <LoginWrapper>
+      <Head>
+        <title>Settings</title>
+      </Head>
       <Layout>
         <form
           className="form"

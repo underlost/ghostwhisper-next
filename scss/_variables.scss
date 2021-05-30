@@ -3,7 +3,7 @@ $body-bg: #F8F8F2;
 $main-bg: #F8F8F2;
 $text-color: #231f20;
 $primary: #575558;
-
+$secondary: $seaBlue;
 
 // Fonts
 $font-family-sans-serif: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
@@ -20,6 +20,7 @@ $input-placeholder-color: lighten($text-color, 50%);
 
 $input-bg: transparent;
 $input-disabled-bg: #D8C7AB;
+$input-focus-color: $primary;
 
 $input-color: $text-color;
 $input-border-color: $primary;

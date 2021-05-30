@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { renderToString } from 'react-dom/server'
 import GhostAdminAPI from '@tryghost/admin-api'
 import ReactMde from 'react-mde'
 import dayjs from 'dayjs'
@@ -6,15 +7,25 @@ import * as Showdown from 'showdown'
 import { getCurrentUser } from '../util/storage'
 import path from 'path'
 import Toast from 'react-bootstrap/Toast'
+import { getPosts } from '../lib/posts'
 
-const CreatePost = () => {
-  const dateTile = dayjs().format(`ddd, MMM D, YYYY h:mm A`)
+export default function LiveBlogPost() {
   const siteName = getCurrentUser().siteName
   const siteAPI = getCurrentUser().siteAPI
-  const [PostTitleState, setPostTitleState] = useState(dateTile)
   const [PostContentState, setPostContentState] = useState(``)
+  const [PostIDState, setPostIDState] = useState(``)
   const [showToast, setShowToast] = useState(false)
   const [selectedTab, setSelectedTab] = useState(`write`)
+  const [currentPost, setcurrentPost] = useState([])
+  const [displayState, setDisplayState] = useState(``)
+  const [posts, setPosts] = useState([])
+  const currentTime = dayjs()
+  const currentTimeReadable = dayjs().format(`YYYY h:mm A (MMM D)`)
+
+  useEffect(() => {
+    getPosts().then((data) => setPosts(data))
+  }, [])
+  ///console.log(posts)
 
   const converter = new Showdown.Converter({
     tables: true,
@@ -28,9 +39,8 @@ const CreatePost = () => {
     key: siteAPI,
     version: `v3`,
   })
-
-  console.log(siteName)
-  console.log(siteAPI)
+  //console.log(siteName)
+  //console.log(siteAPI)
 
   // Utility function to find and upload any images in an HTML string
   function processImagesInHTML(html) {
@@ -54,10 +64,43 @@ const CreatePost = () => {
     })
   }
 
+  function getLatestUpdate() {
+    api.posts
+      .read({
+        id: PostIDState,
+        formats: `html`,
+      })
+      .then((postsData) => {
+        setcurrentPost(postsData)
+        setDisplayState(postsData.html)
+        //console.log(displayState)
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const handlePostLookup = (event) => {
+    event.preventDefault()
+    getLatestUpdate()
+  }
+
+  const postedHTML = (
+    <div className="liveEntryUpdate">
+      <div className="liveEntryDatetime">
+        <time dateTime={currentTime}>{currentTimeReadable}</time>
+      </div>
+      <div className="liveEntryContent">{PostContentState}</div>
+    </div>
+  )
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    let title = PostTitleState
-    let html = PostContentState
+    getLatestUpdate()
+    let combinedHTML = currentPost.html + renderToString(postedHTML)
+    //console.log(combinedHTML)
+    let title = currentPost.title
+    let updatedAt = currentPost.updated_at
+    let html = combinedHTML
+    let id = PostIDState
 
     let mobiledoc = JSON.stringify({
       version: `0.3.1`,
@@ -78,24 +121,48 @@ const CreatePost = () => {
     processImagesInHTML(html)
       .then(
         api.posts
-          .add({
+          .edit({
+            id: id,
             title: title,
-            tags: [`#aside`],
+            updated_at: updatedAt,
             mobiledoc: mobiledoc,
-            status: `published`,
           })
           .then((res) => console.log(JSON.stringify(res)))
           .catch((err) => console.log(err))
       )
       .catch((err) => console.log(err))
-
     setShowToast(true)
-    setPostTitleState(``)
     setPostContentState(``)
+    setDisplayState(combinedHTML)
   }
 
   return (
     <>
+      <form
+        onSubmit={(event) => {
+          handlePostLookup(event)
+        }}>
+        <div className="form-group mb-4">
+          <div className="row">
+            <div className="col-8">
+              <select className="form-select" aria-label="Choose Post" onChange={(event) => setPostIDState(event.target.value)}>
+                <option value="">Select Post</option>
+                {posts.map((obj) => (
+                  <option value={obj.id} key={obj.id}>
+                    {obj.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="col-4">
+              <button className="btn btn-primary w-100">Select</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <hr />
+
       <ReactMde
         value={PostContentState}
         onChange={setPostContentState}
@@ -104,23 +171,8 @@ const CreatePost = () => {
         generateMarkdownPreview={(markdown) => Promise.resolve(converter.makeHtml(markdown))}
       />
 
-      <div className="row  pt-3">
-        <div className="col-8">
-          <div className="form-group">
-            <label className={`label d-block`}>
-              <span className="visually-hidden">Title</span>
-              <input
-                className={`form-control form-control-subtle px-0`}
-                type="text"
-                placeholder="Title (optional)"
-                name="title"
-                value={PostTitleState}
-                onChange={(event) => setPostTitleState(event.target.value)}
-              />
-            </label>
-          </div>
-        </div>
-        <div className="col-4">
+      <div className="row pt-3">
+        <div className="col-12">
           <form
             className={`form`}
             method="post"
@@ -128,11 +180,13 @@ const CreatePost = () => {
               handleSubmit(event)
             }}>
             <div className="text-right">
-              <input className="btn btn-primary btn-block w-100 text-uppercase" type="submit" value="Post" />
+              <input className="btn btn-primary btn-block text-uppercase w-100" type="submit" value="Post" />
             </div>
           </form>
         </div>
       </div>
+
+      <div className="pt-4 post-content" dangerouslySetInnerHTML={{ __html: displayState }}></div>
       <div
         style={{
           position: `absolute`,
@@ -149,5 +203,3 @@ const CreatePost = () => {
     </>
   )
 }
-
-export default CreatePost

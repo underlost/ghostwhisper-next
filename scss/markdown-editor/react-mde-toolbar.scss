@@ -10,20 +10,25 @@
   background: $mde-toolbar-color;
 
   .mde-tabs {
-    display: block;
+    display: flex;
     width: 100%;
 
     button {
       border-radius: $mde-border-radius;
       margin: 6px 3px;
       border: 1px solid transparent;
+      width: 100%;
       @extend .btn;
       @extend .btn-primary;
       cursor: pointer;
       &:first-child {
         margin-left: 0;
       }
+      &:last-child {
+        margin-right: 0;
+      }
       &.selected {
+        background-color: $secondary;
         border: 1px solid $mde-border-color
       }
     }
@@ -65,7 +70,7 @@
 
         @extend .btn;
         @extend .btn-sm;
-        @extend .btn-secondary;
+        @extend .btn-primary;
 
         @keyframes tooltip-appear {
           from {

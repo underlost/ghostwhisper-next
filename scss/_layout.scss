@@ -54,3 +54,15 @@ textarea.form-control-subtle {
     box-shadow: none;
   }
 }
+
+
+.post-content {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.form-select:focus {
+  border-color: $secondary !important;
+}

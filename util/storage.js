@@ -1,6 +1,6 @@
 const isBrowser = typeof window !== `undefined`
 const getUser = () => (window.localStorage.ghostwhisperUser ? JSON.parse(window.localStorage.ghostwhisperUser) : {})
-const setUser = user => (window.localStorage.ghostwhisperUser = JSON.stringify(user))
+const setUser = (user) => (window.localStorage.ghostwhisperUser = JSON.stringify(user))
 
 function generateUUID() {
   // Public Domain/MIT
