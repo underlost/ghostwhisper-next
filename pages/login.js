@@ -45,13 +45,13 @@ export default function LoginPage() {
               <input className={`form-control`} type="text" name="siteName" value={siteNameState} onChange={(event) => setSiteNameState(event.target.value)} />
             </label>
           </div>
-          <div className="form-group">
+          <div className="form-group pb-4">
             <label className={`label d-block`}>
               API Key
               <textarea className={`form-control`} type="text" name="siteAPI" value={siteAPIState} onChange={(event) => setSiteAPIState(event.target.value)} />
             </label>
           </div>
-          <input className={`btn btn-block btn-primary`} type="submit" value="Log In" />
+          <input className={`btn btn-block w-100 btn-primary`} type="submit" value="Log In" />
         </form>
 
         <p className="pt-2">
