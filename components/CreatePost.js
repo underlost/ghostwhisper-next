@@ -13,6 +13,7 @@ const CreatePost = () => {
   const siteAPI = getCurrentUser().siteAPI
   const [PostTitleState, setPostTitleState] = useState(dateTile)
   const [PostContentState, setPostContentState] = useState(``)
+  const [PostLinkState, setPostLinkState] = useState(``)
   const [showToast, setShowToast] = useState(false)
   const [selectedTab, setSelectedTab] = useState(`write`)
 
@@ -108,9 +109,9 @@ const CreatePost = () => {
         <div className="col-8">
           <div className="form-group">
             <label className={`label d-block`}>
-              <span className="visually-hidden">Title</span>
+              <span className="sr-only">Title</span>
               <input
-                className={`form-control form-control-subtle px-0`}
+                className="form-control form-control-subtle px-0"
                 type="text"
                 placeholder="Title (optional)"
                 name="title"
@@ -119,18 +120,25 @@ const CreatePost = () => {
               />
             </label>
           </div>
+
+          <div className="form-group">
+            <label className={`label d-block`}>
+              <span className="sr-only">Link</span>
+              <input
+                className="form-control form-control-subtle px-0"
+                type="text"
+                placeholder="Link (optional)"
+                name="link"
+                value={PostLinkState}
+                onChange={(event) => setPostLinkState(event.target.value)}
+              />
+            </label>
+          </div>
         </div>
         <div className="col-4">
-          <form
-            className={`form`}
-            method="post"
-            onSubmit={(event) => {
-              handleSubmit(event)
-            }}>
-            <div className="text-right">
-              <input className="btn btn-primary btn-block w-100 text-uppercase" type="submit" value="Post" />
-            </div>
-          </form>
+          <button className="btn btn-primary btn-block w-full uppercase" onClick={handleSubmit}>
+            Post
+          </button>
         </div>
       </div>
       <div

@@ -18,22 +18,20 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Nav />
-      <div className="site-wrapper pt-3 mx-4 mx-md-auto">
-        <header className="site-header pb-3 text-right d-block">
-          <nav className="navbar navbar-light bg-light">
-            <Link href="/">
-              <a className="navbar-brand">
-                <SVGLogo />
-                <h1 className="visually-hidden">GhostWhisper</h1>
-              </a>
+      <div className="site-wrapper pt-3 mx-md-auto max-w-lg mx-auto">
+        <header className="site-header py-5 text-right d-block">
+          <nav className="flex">
+            <Link href="/" className="navbar-brand">
+              <SVGLogo />
+              <h1 className="sr-only">GhostWhisper</h1>
             </Link>
-            <div className="toggle-wrapper">
+            <div className="toggle-wrapper pr-8">
               <button className={`button navbar-toggler`} data-target="page-wrap" onClick={() => toggleMenu()}>
                 <span className={`icon-bar top-bar`} />
                 <span className={`icon-bar middle-bar`} />
                 <span className={`icon-bar middle-bar`} />
                 <span className={`icon-bar bottom-bar`} />
-                <span className={`visually-hidden`}>Toggle navigation</span>
+                <span className={`sr-only`}>Toggle navigation</span>
               </button>
             </div>
           </nav>

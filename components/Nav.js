@@ -7,27 +7,27 @@ const Nav = () => (
       <ul className="list-unstyled pt-5">
         <li className="menu-item">
           <Link href="/">
-            <a>Home</a>
+            Home
           </Link>
         </li>
         <li className="menu-item">
           <Link href="/posts/">
-            <a>Previous Posts</a>
+            Previous Posts
           </Link>
         </li>
         <li className="menu-item">
           <Link href="/about/">
-            <a>About</a>
+            About
           </Link>
         </li>
         <li className="menu-item">
           <Link href="/settings/">
-            <a>Settings</a>
+            Settings
           </Link>
         </li>
         <li className="menu-item">
           <Link href="/logout/">
-            <a>Logout</a>
+            Logout
           </Link>
         </li>
       </ul>

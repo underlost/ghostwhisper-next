@@ -14,8 +14,8 @@ export default function IndexPage() {
       <Layout>
         <CreatePost />
         <div className="pt-4">
-          <Link href="/live/">
-            <a className="btn btn-primary w-100">Go Live</a>
+          <Link href="/live/" className="btn btn-primary w-100">
+            Go Live
           </Link>
         </div>
       </Layout>

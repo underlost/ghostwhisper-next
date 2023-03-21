@@ -1,0 +1,32 @@
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+
+html, body {
+  @apply bg-body;
+}
+
+$seaBlue: #8CC8C5;
+$body-bg: #F8F8F2;
+$main-bg: #F8F8F2;
+$text-color: #231f20;
+$primary: #575558;
+$secondary: $seaBlue;
+
+.btn {
+  @apply border border-primary bg-body mb-4 px-4 py-2 rounded;
+}
+
+.btn-primary {
+  @apply bg-primary text-white;
+}
+.btn-sm {
+  @apply border px-2 py-1 rounded;
+}
+
+.form-control {
+  @apply border w-full border-primary bg-body mb-2 px-2 py-2 rounded;
+}
+
+@import "./markdown-editor/react-mde-all.scss";
+@import "./nav.scss";

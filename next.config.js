@@ -5,14 +5,11 @@ module.exports = {
   //target: `serverless`,
   // sass stuff
   sassOptions: {
-    includePaths: [path.join(__dirname, `scss`)],
+    includePaths: [path.join(__dirname, `styles`)],
   },
+  reactStrictMode: true,
   images: {
     domains: [`cyberbrain.dev`],
-  },
-  future: {
-    webpack5: true, // by default, if you customize webpack config, they switch back to version 4.
-    // Looks like backward compatibility approach.
   },
   webpack(config) {
     config.resolve.fallback = {
@@ -20,7 +17,6 @@ module.exports = {
       // by next.js will be dropped. Doesn't make much sense, but how it is
       fs: false, // the solution
     }
-
     return config
   },
 }
