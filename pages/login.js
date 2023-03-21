@@ -50,7 +50,8 @@ export default function LoginPage() {
           onSubmit={(event) => {
             handleSubmit(event)
             //navigate(`/`)
-          }}>
+          }}
+        >
           <div className="form-group">
             <label className="label block" htmlFor="siteName">
               Site URL

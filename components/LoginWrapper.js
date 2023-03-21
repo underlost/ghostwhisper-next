@@ -7,9 +7,7 @@ const LogginWrapper = ({ children }) => {
   const router = useRouter()
 
   if (isLoggedIn()) {
-    return (
-      <div className="loggedIn">{children}</div>
-    )
+    return <div className="loggedIn">{children}</div>
   } else {
     if (typeof window !== `undefined`) {
       router.push(`/login/`)

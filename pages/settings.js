@@ -31,7 +31,8 @@ const SettingsPage = () => {
           onSubmit={(event) => {
             handleSubmit(event)
             //navigate(`/`)
-          }}>
+          }}
+        >
           <div className="form-group mb-3">
             <label className="label d-block">
               URL

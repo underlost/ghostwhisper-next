@@ -25,7 +25,8 @@ const LogoutPage = () => {
           onSubmit={(event) => {
             handleSubmit(event)
             //navigate(`/`)
-          }}>
+          }}
+        >
           <button className="btn btn-block btn-primary">Logout</button>
         </form>
       </Layout>

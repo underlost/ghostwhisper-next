@@ -146,7 +146,8 @@ const CreatePost = () => {
           position: `absolute`,
           bottom: `20px`,
           right: `20px`,
-        }}>
+        }}
+      >
         <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
           <Toast.Header>
             <strong className="mr-auto">Notice</strong>

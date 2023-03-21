@@ -141,7 +141,8 @@ export default function LiveBlogPost() {
       <form
         onSubmit={(event) => {
           handlePostLookup(event)
-        }}>
+        }}
+      >
         <div className="form-group mb-4">
           <div className="row">
             <div className="col-8">
@@ -178,7 +179,8 @@ export default function LiveBlogPost() {
             method="post"
             onSubmit={(event) => {
               handleSubmit(event)
-            }}>
+            }}
+          >
             <div className="text-right">
               <input className="btn btn-primary btn-block text-uppercase w-100" type="submit" value="Post" />
             </div>
@@ -192,7 +194,8 @@ export default function LiveBlogPost() {
           position: `absolute`,
           bottom: `20px`,
           right: `20px`,
-        }}>
+        }}
+      >
         <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
           <Toast.Header>
             <strong className="mr-auto">Notice</strong>
