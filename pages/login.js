@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
-import Layout from '../components/Layout'
-import Head from 'next/head'
-import { getCurrentUser, handleLogin } from '../util/storage'
-import { useRouter } from 'next/router'
-import { isLoggedIn } from '../util/storage'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as Yup from 'yup'
+import React, { useState } from "react"
+import Link from "next/link"
+import Layout from "../components/Layout"
+import Head from "next/head"
+import { getCurrentUser, handleLogin } from "../util/storage"
+import { useRouter } from "next/router"
+import { isLoggedIn } from "../util/storage"
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import * as Yup from "yup"
 
 export default function LoginPage() {
   // form validation rules

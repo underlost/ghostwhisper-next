@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { isLoggedIn } from '../util/storage'
-import { useRouter } from 'next/router'
+import React from "react"
+import PropTypes from "prop-types"
+import { isLoggedIn } from "../util/storage"
+import { useRouter } from "next/router"
 
 const LogginWrapper = ({ children }) => {
   const router = useRouter()

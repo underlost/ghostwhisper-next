@@ -1,8 +1,8 @@
-import React from 'react'
-import Head from 'next/head'
-import Layout from '../components/Layout'
-import LoginWrapper from '../components/LoginWrapper'
-import { useRouter } from 'next/router'
+import React from "react"
+import Head from "next/head"
+import Layout from "../components/Layout"
+import LoginWrapper from "../components/LoginWrapper"
+import { useRouter } from "next/router"
 
 const LogoutPage = () => {
   const router = useRouter()

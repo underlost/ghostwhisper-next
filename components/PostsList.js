@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
-import React, { useState } from 'react'
-import GhostAdminAPI from '@tryghost/admin-api'
-import PostItem from './PostItem'
-import { getCurrentUser } from '../util/storage'
+import PropTypes from "prop-types"
+import React, { useState } from "react"
+import GhostAdminAPI from "@tryghost/admin-api"
+import PostItem from "./PostItem"
+import { getCurrentUser } from "../util/storage"
 
 const PostsList = ({ pageNumber }) => {
   const siteName = getCurrentUser().siteName

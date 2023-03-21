@@ -1,7 +1,7 @@
-import React from 'react'
-import Layout from '../components/Layout'
-import LoginWrapper from '../components/LoginWrapper'
-import PostsList from '../components/PostsList'
+import React from "react"
+import Layout from "../components/Layout"
+import LoginWrapper from "../components/LoginWrapper"
+import PostsList from "../components/PostsList"
 
 const IndexPage = () => (
   <LoginWrapper>

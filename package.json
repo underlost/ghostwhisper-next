@@ -29,7 +29,6 @@
     "browserify-fs": "^1.0.0",
     "crypto-browserify": "^3.12.0",
     "dayjs": "^1.10.4",
-    "eslint": "^8.36.0",
     "eslint-plugin-ghost": "^2.2.0",
     "eslint-plugin-react": "^7.17.0",
     "fs": "^0.0.1-security",
@@ -52,7 +51,15 @@
     "yup": "^1.0.2"
   },
   "devDependencies": {
-    "@types/node": "18.15.3",
-    "typescript": "5.0.2"
+    "@babel/core": "^7.14.3",
+    "@babel/eslint-parser": "^7.14.3",
+    "eslint": "8.34.0",
+    "eslint-config-next": "13.1.6",
+    "eslint-plugin-react": "^7.17.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.0.0",
+    "postcss-preset-env": "^8.0.1",
+    "precss": "^4.0.0",
+    "typescript": "4.9.5"
   }
 }

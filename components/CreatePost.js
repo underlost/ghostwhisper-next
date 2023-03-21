@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import GhostAdminAPI from '@tryghost/admin-api'
-import ReactMde from 'react-mde'
-import dayjs from 'dayjs'
-import * as Showdown from 'showdown'
-import { getCurrentUser } from '../util/storage'
-import path from 'path'
-import Toast from 'react-bootstrap/Toast'
+import React, { useState } from "react"
+import GhostAdminAPI from "@tryghost/admin-api"
+import ReactMde from "react-mde"
+import dayjs from "dayjs"
+import * as Showdown from "showdown"
+import { getCurrentUser } from "../util/storage"
+import path from "path"
+import Toast from "react-bootstrap/Toast"
 
 const CreatePost = () => {
   const dateTile = dayjs().format(`ddd, MMM D, YYYY h:mm A`)
