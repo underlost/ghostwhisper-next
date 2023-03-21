@@ -1,9 +1,9 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import SVGLogo from "./svgLogo"
-import Head from "next/head"
-import Link from "next/link"
-import Nav from "./Nav"
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+import SVGLogo from './svgLogo'
+import Head from 'next/head'
+import Link from 'next/link'
+import Nav from './Nav'
 
 const Layout = ({ children }) => {
   const [menuState, setMenuState] = useState(`nav-is-closed`)

@@ -6,6 +6,7 @@ import * as Showdown from "showdown"
 import { getCurrentUser } from "../util/storage"
 import path from "path"
 import Toast from "react-bootstrap/Toast"
+import axios from "axios"
 
 const CreatePost = () => {
   const dateTile = dayjs().format(`ddd, MMM D, YYYY h:mm A`)
@@ -16,6 +17,7 @@ const CreatePost = () => {
   const [PostLinkState, setPostLinkState] = useState(``)
   const [showToast, setShowToast] = useState(false)
   const [selectedTab, setSelectedTab] = useState(`write`)
+  const [bookmarkCard, setBookmarkCard] = useState(``)
 
   const converter = new Showdown.Converter({
     tables: true,
@@ -30,8 +32,8 @@ const CreatePost = () => {
     version: `v3`,
   })
 
-  console.log(siteName)
-  console.log(siteAPI)
+  //console.log(siteName)
+  //console.log(siteAPI)
 
   // Utility function to find and upload any images in an HTML string
   function processImagesInHTML(html) {
@@ -55,6 +57,44 @@ const CreatePost = () => {
     })
   }
 
+  async function previewLinkPost(url) {
+    const requestOptions = {
+      headers: {
+        "Content-Type": `application/json`,
+        Accept: `application/json`,
+      },
+    }
+    const body = JSON.stringify({ url })
+    const response = await axios.post(`/api/getlinkpreview`, body, requestOptions)
+    return response.data
+    
+  }
+
+  const handleLinkPreview = (event) => {
+    event.preventDefault()
+
+    // Get link preview data from previewLinkPost API
+    if (PostLinkState !== ``) {
+      previewLinkPost(PostLinkState).then((res) => {
+        console.log(res)
+        // Set the bookmark card
+        setBookmarkCard(
+          `<div class="bookmark-card">
+            <a href="${res.url}" target="_blank" rel="noopener noreferrer">
+              <div class="bookmark-card__image">
+                <img src="${res.image}" alt="${res.title}" />
+              </div>
+              <div class="bookmark-card__content">
+                <h3 class="bookmark-card__title">${res.title}</h3>
+                <p class="bookmark-card__description">${res.description || ``}</p>
+              </div>
+            </a>
+          </div>`
+        )
+      })
+    }
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
     let title = PostTitleState
@@ -65,15 +105,13 @@ const CreatePost = () => {
       markups: [],
       atoms: [],
       cards: [
-        [
-          `html`,
-          {
-            cardName: `html`,
-            html: html,
-          },
-        ],
+        [`html`, { html: html }],
+        [`html`, { html: bookmarkCard }],
       ],
-      sections: [[10, 0]],
+      sections: [
+        [10, 0],
+        [10, 1],
+      ],
     })
 
     processImagesInHTML(html)
@@ -131,8 +169,13 @@ const CreatePost = () => {
                 name="link"
                 value={PostLinkState}
                 onChange={(event) => setPostLinkState(event.target.value)}
+                onBlur={handleLinkPreview}
               />
             </label>
+
+            {bookmarkCard !== `` && (
+              <div dangerouslySetInnerHTML={{ __html: bookmarkCard }}></div>
+            )}
           </div>
         </div>
         <div className="col-4">
