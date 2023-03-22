@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Head from "next/head"
 import Link from "next/link"
-import LoginWrapper from "../components/LoginWrapper"
 import Layout from "../components/Layout"
 import CreatePost from "../components/CreatePost"
 import { getCurrentUser } from "../util/storage"

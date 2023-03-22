@@ -1,7 +1,6 @@
 import React from "react"
 import Head from "next/head"
 import Layout from "../components/Layout"
-import LoginWrapper from "../components/LoginWrapper"
 import { useRouter } from "next/router"
 
 const LogoutPage = () => {
@@ -12,7 +11,7 @@ const LogoutPage = () => {
     router.push(`/login/`)
   }
   return (
-    <LoginWrapper>
+    <>
       <Head>
         <title>Logout</title>
       </Head>
@@ -30,7 +29,7 @@ const LogoutPage = () => {
           <button className="btn btn-block btn-primary">Logout</button>
         </form>
       </Layout>
-    </LoginWrapper>
+    </>
   )
 }
 

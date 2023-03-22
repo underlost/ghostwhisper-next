@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import Head from "next/head"
 import Layout from "../components/Layout"
-import LoginWrapper from "../components/LoginWrapper"
 import { getCurrentUser, updateUser } from "../util/storage"
 
 const SettingsPage = () => {
@@ -20,7 +19,7 @@ const SettingsPage = () => {
   }
 
   return (
-    <LoginWrapper>
+    <>
       <Head>
         <title>Settings</title>
       </Head>
@@ -48,7 +47,7 @@ const SettingsPage = () => {
           <input className="btn btn-block btn-primary text-uppercase" type="submit" value="Update Settings" />
         </form>
       </Layout>
-    </LoginWrapper>
+    </>
   )
 }
 
